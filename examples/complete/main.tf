@@ -131,22 +131,20 @@ module "endpoints" {
   vpc_id             = module.vpc.vpc_id
   security_group_ids = [module.security_group.this_security_group_id]
 
-  gateway_endpoints = {
+  endpoints = {
     s3 = {
-      service             = "s3"
-      private_dns_enabled = true
-      route_table_ids     = module.vpc.private_route_table_ids
-      policy              = data.aws_iam_policy_document.example.json
-      tags                = { Name = "s3-vpc-endpoint" }
+      service         = "s3"
+      service_type    = "Gateway"
+      route_table_ids = module.vpc.private_route_table_ids
+      policy          = data.aws_iam_policy_document.example.json
+      tags            = { Name = "s3-vpc-endpoint" }
     },
     dynamodb = {
       service         = "dynamodb"
+      service_type    = "Gateway"
       route_table_ids = module.vpc.private_route_table_ids
       tags            = { Name = "dynamodb-vpc-endpoint" }
-    }
-  }
-
-  interface_endpoints = {
+    },
     sns = {
       service    = "sns"
       subnet_ids = module.vpc.private_subnets

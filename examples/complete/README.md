@@ -52,7 +52,6 @@ No inputs.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_gateway_endpoints"></a> [gateway\_endpoints](#output\_gateway\_endpoints) | Array containing the full resource object and attributes for all gateway endpoints created |
-| <a name="output_interface_endpoints"></a> [interface\_endpoints](#output\_interface\_endpoints) | Array containing the full resource object and attributes for all interface endpoints created |
+| <a name="output_endpoints"></a> [endpoints](#output\_endpoints) | Array containing the full resource object and attributes for all endpoints created |
 | <a name="output_s3_endpoint_arn"></a> [s3\_endpoint\_arn](#output\_s3\_endpoint\_arn) | S3 gateway endpoint ARN |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
