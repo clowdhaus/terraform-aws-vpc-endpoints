@@ -2,10 +2,6 @@
 
 Terraform module which creates VPC endpoint resources on AWS.
 
-The following resources are supported:
-
-- [aws_vpc_endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_endpoint)
-
 ## Usage
 
 See [`examples`](./examples) directory for working examples to reference:
@@ -17,21 +13,17 @@ module "endpoints" {
   vpc_id             = "vpc-12345678"
   security_group_ids = ["sg-12345678"]
 
-  gateway_endpoints = {
+  endpoints = {
     s3 = {
       service             = "s3"
       private_dns_enabled = true
-      route_table_ids     = ["rt-12322456", "rt-43433343", "rt-11223344"]
       tags                = { Name = "s3-vpc-endpoint" }
     },
     dynamodb = {
       service         = "dynamodb"
       route_table_ids = ["rt-12322456", "rt-43433343", "rt-11223344"]
       tags            = { Name = "dynamodb-vpc-endpoint" }
-    }
-  }
-
-  interface_endpoints = {
+    },
     sns = {
       service    = "sns"
       subnet_ids = ["subnet-12345678", "subnet-87654321"]
