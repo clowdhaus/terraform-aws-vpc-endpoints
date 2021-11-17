@@ -27,7 +27,7 @@ data "aws_caller_identity" "current" {}
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2"
+  version = "~> 3.0"
 
   name = local.name
   cidr = "10.99.0.0/18"
@@ -77,7 +77,7 @@ module "vpc" {
 
 module "security_group" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3"
+  version = "~> 4.0"
 
   name        = local.name
   description = "Example security group"
@@ -99,7 +99,7 @@ module "security_group" {
 
 module "security_group_alt" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 3"
+  version = "~> 4.0"
 
   name        = "${local.name}-a"
   description = "Example security group"
@@ -129,7 +129,7 @@ module "endpoints" {
   source = "../.."
 
   vpc_id             = module.vpc.vpc_id
-  security_group_ids = [module.security_group.this_security_group_id]
+  security_group_ids = [module.security_group.security_group_id]
 
   endpoints = {
     s3 = {
@@ -153,7 +153,7 @@ module "endpoints" {
     sqs = {
       service             = "sqs"
       private_dns_enabled = true
-      security_group_ids  = [module.security_group_alt.this_security_group_id]
+      security_group_ids  = [module.security_group_alt.security_group_id]
       subnet_ids          = module.vpc.intra_subnets
       tags                = { Name = "sqs-vpc-endpoint" }
     },
