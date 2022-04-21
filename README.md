@@ -1,5 +1,16 @@
 # AWS VPC Endpoints Terraform module
 
+## ⚠️ Module is deprecated in favor of upstream VPC module
+
+This module was created temporarily to demonstrate how to create a scalable VPC endpoint module. This functionality has been merged into the upstream [`terraform-aws-vpc`](https://github.com/terraform-aws-modules/terraform-aws-vpc) module.
+
+Users can change their module source to continue to utilize this functionality from the upstream VPC module:
+
+```diff
+- source = "clowdhaus/vpc-endpoints/aws"
++ source = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
+```
+
 Terraform module which creates VPC endpoint resources on AWS.
 
 ## Usage
@@ -8,7 +19,7 @@ See [`examples`](./examples) directory for working examples to reference:
 
 ```hcl
 module "endpoints" {
-  source  = "clowdhaus/vpc-endpoints/aws"
+  source  = "terraform-aws-modules/vpc/aws//modules/vpc-endpoints"
 
   vpc_id             = "vpc-12345678"
   security_group_ids = ["sg-12345678"]
